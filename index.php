@@ -25,12 +25,17 @@ Kirby::plugin('lukaskleinschmidt/resolve', [
             $proxy = $kirby->cache('lukaskleinschmidt.resolve')
                            ->get($path, false);
 
-            if ($proxy === false || is_dir($proxy['path']) === false) {
+            if ($proxy === false) {
+                return;
+            }
+
+            $root = $kirby->root('content');
+
+            if (is_dir($root . '/' . $proxy['path']) === false) {
                 return;
             }
 
             $parts  = explode('/', $proxy['path']);
-            $root   = $kirby->root('content');
             $draft  = false;
             $parent = null;
             $page   = null;
@@ -82,6 +87,8 @@ Kirby::plugin('lukaskleinschmidt/resolve', [
 
                 $parent = $page = Page::factory($params);
             }
+            
+            dump('resolve');
 
             $kirby->extend([
                 'pages' => [$path => $page]
