@@ -25,7 +25,7 @@ Kirby::plugin('lukaskleinschmidt/resolve', [
             $proxy = $kirby->cache('lukaskleinschmidt.resolve')
                            ->get($path, false);
 
-            if ($proxy === false) {
+            if ($proxy === false || is_dir($proxy['path']) === false) {
                 return;
             }
 
