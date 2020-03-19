@@ -61,7 +61,7 @@ Kirby::plugin('lukaskleinschmidt/resolve', [
                 if ($draft === true) {
                     $params['isDraft'] = $draft;
 
-                    // Only direct subpages are labeled draft 
+                    // Only direct subpages are marked as drafts
                     $draft = false;
                 }
 
