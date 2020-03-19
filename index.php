@@ -87,8 +87,6 @@ Kirby::plugin('lukaskleinschmidt/resolve', [
 
                 $parent = $page = Page::factory($params);
             }
-            
-            dump('resolve');
 
             $kirby->extend([
                 'pages' => [$path => $page]
