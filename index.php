@@ -7,7 +7,13 @@ Kirby::plugin('lukaskleinschmidt/resolve', [
         'cache' => true,
     ],
     'hooks' => [
-        'page.changeSlug:before' => function ($page) {
+        'page.changeNum:before' => function () {
+            kirby()->cache('lukaskleinschmidt.resolve')->flush();
+        },
+        'page.changeSlug:before' => function () {
+            kirby()->cache('lukaskleinschmidt.resolve')->flush();
+        },
+        'page.changeStatus:before' => function () {
             kirby()->cache('lukaskleinschmidt.resolve')->flush();
         },
         'route:before' => function ($route, $path, $method) {
