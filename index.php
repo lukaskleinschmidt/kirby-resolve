@@ -31,9 +31,9 @@ Kirby::plugin('lukaskleinschmidt/resolve', [
 
             $parts  = explode('/', $proxy['path']);
             $root   = $kirby->root('content');
+            $draft  = false;
             $parent = null;
             $page   = null;
-            $draft  = false;
 
             foreach ($parts as $part) {
                 $root .= '/' . $part;
