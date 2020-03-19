@@ -1,6 +1,6 @@
 {
-    "name": "lukaskleinschmidt/multilang",
-    "description": "Kirby Multilang",
+    "name": "lukaskleinschmidt/resolve",
+    "description": "Kirby Resolve",
     "type": "kirby-plugin",
     "license": "MIT",
     "authors": [
