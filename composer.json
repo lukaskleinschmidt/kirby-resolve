@@ -1,5 +1,5 @@
 {
-    "name": "lukaskleinschmidt/resolve",
+    "name": "lukaskleinschmidt/kirby-resolve",
     "description": "Kirby Resolve",
     "type": "kirby-plugin",
     "license": "MIT",
@@ -8,11 +8,5 @@
             "name": "Lukas Kleinschmidt",
             "email": "public@kleinschmidt.at"
         }
-    ],
-    "require": {
-        "getkirby/composer-installer": "^1.1"
-    },
-    "config": {
-        "optimize-autoloader": true
-    }
+    ]
 }
