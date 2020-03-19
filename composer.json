@@ -1,0 +1,18 @@
+{
+    "name": "lukaskleinschmidt/multilang",
+    "description": "Kirby Multilang",
+    "type": "kirby-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lukas Kleinschmidt",
+            "email": "public@kleinschmidt.at"
+        }
+    ],
+    "require": {
+        "getkirby/composer-installer": "^1.1"
+    },
+    "config": {
+        "optimize-autoloader": true
+    }
+}
