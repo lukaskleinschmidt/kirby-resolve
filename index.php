@@ -23,7 +23,7 @@ Kirby::plugin('lukaskleinschmidt/resolve', [
 
             $kirby = kirby();
             $proxy = $kirby->cache('lukaskleinschmidt.resolve')
-                            ->get($path, false);
+                           ->get($path, false);
 
             if ($proxy === false) {
                 return;
@@ -33,11 +33,13 @@ Kirby::plugin('lukaskleinschmidt/resolve', [
             $root   = $kirby->root('content');
             $parent = null;
             $page   = null;
+            $draft  = false;
 
             foreach ($parts as $part) {
                 $root .= '/' . $part;
 
-                if ($part === '_draft') {
+                if ($part === '_drafts') {
+                    $draft = true;
                     continue;
                 }
 
@@ -50,11 +52,18 @@ Kirby::plugin('lukaskleinschmidt/resolve', [
                 }
 
                 $params = [
-                    'root'   => $root,
-                    'parent' => $parent,
-                    'slug'   => $slug,
-                    'num'    => $num,
+                    'root'    => $root,
+                    'parent'  => $parent,
+                    'slug'    => $slug,
+                    'num'     => $num,
                 ];
+
+                if ($draft === true) {
+                    $params['isDraft'] = $draft;
+
+                    // Only direct subpages are labeled draft 
+                    $draft = false;
+                }
 
                 if (empty(Page::$models) === false) {
                     $extension = $kirby->contentExtension();
