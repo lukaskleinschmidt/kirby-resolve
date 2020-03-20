@@ -15,10 +15,15 @@ function resolveDir(string $path): ?Page
         return null;
     }
 
-    $parts  = explode('/', $path);
-    $draft  = false;
-    $parent = null;
-    $page   = null;
+    $extension = $kirby->contentExtension();
+    $parts     = explode('/', $path);
+    $draft     = false;
+    $parent    = null;
+    $page      = null;
+    
+    if ($kirby->multilang()) {
+        $extension = $kirby->defaultLanguage()->code() . '.' . $extension;
+    }
 
     foreach ($parts as $part) {
         $root .= '/' . $part;
@@ -37,31 +42,24 @@ function resolveDir(string $path): ?Page
         }
 
         $params = [
-            'root'    => $root,
-            'parent'  => $parent,
-            'slug'    => $slug,
-            'num'     => $num,
+            'root'   => $root,
+            'parent' => $parent,
+            'slug'   => $slug,
+            'num'    => $num,
         ];
 
         if ($draft === true) {
             $params['isDraft'] = $draft;
 
-            // Only direct subpages are marked as drafts
+            // Only direct subpages of a _drafts folder are marked as drafts
             $draft = false;
         }
 
-        if (empty(Page::$models) === false) {
-            $extension = $kirby->contentExtension();
-
-            if ($kirby->multilang()) {
-                $extension = $kirby->defaultLanguage()->code() . '.' . $extension;
-            }
-
-            foreach (array_keys(Page::$models) as $model) {
-                if (file_exists($params['root'] . '/' . $model . '.' . $extension) === true) {
-                    $params['model'] = $model;
-                    break;
-                }
+        // Check for custom page models
+        foreach (array_keys(Page::$models) as $model) {
+            if (file_exists($root . '/' . $model . '.' . $extension)) {
+                $params['model'] = $model;
+                break;
             }
         }
 

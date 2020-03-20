@@ -44,7 +44,7 @@ Kirby::plugin('lukaskleinschmidt/resolve', [
 
             $kirby = kirby();
             $proxy = $kirby->cache('lukaskleinschmidt.resolve')
-                ->get($path, false);
+                           ->get($path, false);
 
             if ($proxy !== false && $page = resolveDir($proxy['path'])) {
                 $kirby->extend([
