@@ -19,6 +19,10 @@ Kirby::plugin('lukaskleinschmidt/resolve', [
                 return $result;
             }
 
+            if (is_a($result, 'Kirby\Cms\Page') === false) {
+                return $result;
+            }
+
             $kirby = kirby();
             $cache = $kirby->cache('lukaskleinschmidt.resolve');
             $proxy = $cache->get($path, false);
@@ -28,7 +32,7 @@ Kirby::plugin('lukaskleinschmidt/resolve', [
                 $kirby->setCurrentLanguage($proxy['lang']);
             }
 
-            if ($proxy === false && is_a($result, 'Kirby\Cms\Page')) {
+            if ($proxy === false && $result->isResolvable()) {
                 $cache->set($path, [
                     'path' => $result->diruri(),
                     'lang' => $kirby->languageCode(),
@@ -52,5 +56,21 @@ Kirby::plugin('lukaskleinschmidt/resolve', [
                 ]);
             }
         },
+    ],
+    'pageMethods' => [
+        'isResolvable' => function () {
+            $path = $this->kirby()->path();
+            $id   = $this->id();
+
+            if ($path && $path !== $id) {
+                return true;
+            }
+
+            if (substr_count($id, '/')) {
+                return true;
+            }
+
+            return false;
+        }
     ]
 ]);
