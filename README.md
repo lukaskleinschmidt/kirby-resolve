@@ -25,7 +25,7 @@ Lets imagine the following content structure.
 ├─ 📁 error
 └─ 📁 home
 ```
-To be able to resolve `photography/landscape` Kirby needs to index all subfolders in the `1_photography` directory to find the correct folder `📁 1_photography/7_landscape`. This is not a big deal for small sites but the time needed will inevitably increase over time as you add more subpages. This gets worse on multi language websites because, in addition to indexing folder names, Kirby also has to check the slugs stored in the content files.
+To be able to resolve `photography/landscape` Kirby needs to index all subfolders in the `1_photography` directory to find the correct folder `📁 1_photography/7_landscape`. This is not a big deal for small sites but the time needed will inevitably increase over time as you add more subpages. This gets worse on multi language websites because, in addition to indexing directories, Kirby also has to check the slugs stored in the content files.
 
 This plugin caches the request by mapping the requested path to the resolved page. By creating the page object from a directory we can skip all the previously needed indexing.
 ```json
@@ -34,7 +34,7 @@ This plugin caches the request by mapping the requested path to the resolved pag
         "dir": "1_photography/7_landscape",
         "lang": "en",
     },
-    "fotografie/landschaft": {
+    "de/fotografie/landschaft": {
         "dir": "1_photography/7_landscape",
         "lang": "de",
     }
