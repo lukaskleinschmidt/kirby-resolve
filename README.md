@@ -62,7 +62,7 @@ return [
 
 
 ## Caveats
-- It does not work for all root pages. Have a look at the [`isResolvable`](https://github.com/lukaskleinschmidt/kirby-resolve/blob/master/index.php#L61) function if you want to know the conditions.
+- It does not work for all root pages. Have a look at the [`isResolvable`](https://github.com/lukaskleinschmidt/kirby-resolve/blob/master/index.php#L67) function if you want to know the conditions.
 
 
 ## Installation
