@@ -2,7 +2,7 @@
 
 /**
  * Resolve a page by directory path
- * 
+ *
  * @param string $path
  * @return \Kirby\Cms\Page|null
  */
@@ -20,7 +20,7 @@ function resolveDir(string $path): ?Page
     $draft     = false;
     $parent    = null;
     $page      = null;
-    
+
     if ($kirby->multilang()) {
         $extension = $kirby->defaultLanguage()->code() . '.' . $extension;
     }
@@ -42,10 +42,11 @@ function resolveDir(string $path): ?Page
         }
 
         $params = [
-            'root'   => $root,
-            'parent' => $parent,
-            'slug'   => $slug,
-            'num'    => $num,
+            'dirname' => $part,
+            'num'     => $num,
+            'parent'  => $parent,
+            'root'    => $root,
+            'slug'    => $slug,
         ];
 
         if ($draft === true) {
